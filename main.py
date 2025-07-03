@@ -13,8 +13,9 @@ def print_menu():
     print("1. 加法")
     print("2. 减法")
     print("3. 乘法")
-    print("4. 查看历史")
-    print("5. 清空历史")
+    print("4. 除法")
+    print("5. 查看历史")
+    print("6. 清空历史")
     print("0. 退出")
     print("===================================")
 
@@ -44,7 +45,7 @@ def main():
         print_menu()
         
         try:
-            choice = input("\n请选择操作 (0-5): ")
+            choice = input("\n请选择操作 (0-6): ")
             
             if choice == '0':
                 print("感谢使用，再见！")
@@ -72,6 +73,16 @@ def main():
                     print(f"结果: {result}")
                     
             elif choice == '4':
+                # 除法
+                a, b = get_numbers()
+                if a is not None and b is not None:
+                    try:
+                        result = calc.divide(a, b)
+                        print(f"结果: {result}")
+                    except ValueError as e:
+                        print(str(e))
+                    
+            elif choice == '5':
                 # 查看历史
                 history = calc.get_history()
                 if history:
@@ -81,7 +92,7 @@ def main():
                 else:
                     print("暂无计算历史。")
                     
-            elif choice == '5':
+            elif choice == '6':
                 # 清空历史
                 calc.clear_history()
                 print("历史记录已清空。")
