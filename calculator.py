@@ -134,3 +134,35 @@ class Calculator:
     def clear_history(self):
         """清空历史记录"""
         self.history.clear()
+        
+    def export_history(self, filename="history.txt"):
+        """
+        导出历史记录到文件
+        
+        参数:
+            filename (str): 导出的文件名，默认为history.txt
+            
+        返回:
+            bool: 导出成功返回True，失败返回False
+        """
+        try:
+            with open(filename, 'w', encoding='utf-8') as f:
+                f.write("=== 计算器历史记录 ===\n")
+                f.write(f"导出时间: {self._get_timestamp()}\n")
+                f.write("=" * 30 + "\n\n")
+                
+                if not self.history:
+                    f.write("暂无计算历史。\n")
+                else:
+                    for i, record in enumerate(self.history, 1):
+                        f.write(f"{i}. {record}\n")
+                        
+            return True
+        except Exception as e:
+            print(f"导出失败: {e}")
+            return False
+            
+    def _get_timestamp(self):
+        """获取当前时间戳"""
+        from datetime import datetime
+        return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
