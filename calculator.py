@@ -41,7 +41,11 @@ class Calculator:
             float: 两数之差
         """
         result = a - b
-        self._add_to_history(f"{a} - {b} = {result}")
+        # 修复：确保负数结果正确显示
+        if result < 0:
+            self._add_to_history(f"{a} - {b} = ({abs(result)})")
+        else:
+            self._add_to_history(f"{a} - {b} = {result}")
         return result
         
     def _add_to_history(self, operation):
