@@ -79,6 +79,40 @@ class Calculator:
         self._add_to_history(f"{a} ÷ {b} = {result}")
         return result
         
+    def power(self, a, n):
+        """
+        幂运算
+        
+        参数:
+            a (float): 底数
+            n (float): 指数
+            
+        返回:
+            float: a的n次幂
+        """
+        result = a ** n
+        self._add_to_history(f"{a} ^ {n} = {result}")
+        return result
+        
+    def square_root(self, a):
+        """
+        平方根运算
+        
+        参数:
+            a (float): 被开方数
+            
+        返回:
+            float: a的平方根
+            
+        异常:
+            ValueError: 当a为负数时抛出
+        """
+        if a < 0:
+            raise ValueError("错误：不能对负数开平方根！")
+        result = a ** 0.5
+        self._add_to_history(f"√{a} = {result}")
+        return result
+        
     def _add_to_history(self, operation):
         """
         添加操作到历史记录
