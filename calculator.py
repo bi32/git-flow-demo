@@ -44,6 +44,21 @@ class Calculator:
         self._add_to_history(f"{a} - {b} = {result}")
         return result
         
+    def multiply(self, a, b):
+        """
+        乘法运算
+        
+        参数:
+            a (float): 第一个数
+            b (float): 第二个数
+            
+        返回:
+            float: 两数之积
+        """
+        result = a * b
+        self._add_to_history(f"{a} × {b} = {result}")
+        return result
+        
     def _add_to_history(self, operation):
         """
         添加操作到历史记录
