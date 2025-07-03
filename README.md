@@ -252,15 +252,26 @@ python main.py
 - **v1.1.0** (开发中): 添加乘除法功能
 - **v2.0.0** (开发中): 添加高级功能（幂运算、平方根、历史导出）和UI改进
 
+## 重要说明：分支状态
+
+**注意**：在Git Flow中，develop分支通常会领先于main分支，这是正常现象！
+
+- **main分支**：只包含稳定发布版本（v1.0.0, v1.0.1）
+- **develop分支**：包含所有最新开发的功能，等待下次发布
+
+当前develop分支领先main分支15个提交，包含了乘除法、高级功能、UI改进等待发布的新特性。
+
 ## 项目结构
 ```
 git-flow-demo/
-├── README.md           # 项目说明和Git Flow流程文档
-├── calculator.py       # 计算器核心类
-├── main.py            # 命令行界面主程序
-├── ui_helper.py       # UI辅助模块（彩色输出）
-├── test_calculator.py # 单元测试（待实现）
-├── requirements.txt   # 项目依赖
-├── LICENSE           # MIT许可证
-└── .gitignore        # Git忽略文件
+├── README.md              # 项目说明和Git Flow流程文档
+├── GITFLOW_DETAILED.md    # Git Flow详细教程（含冲突解决）
+├── BRANCH_STATUS.md       # 分支状态说明
+├── calculator.py          # 计算器核心类
+├── main.py               # 命令行界面主程序
+├── ui_helper.py          # UI辅助模块（彩色输出）
+├── test_calculator.py    # 单元测试（待实现）
+├── requirements.txt      # 项目依赖
+├── LICENSE              # MIT许可证
+└── .gitignore           # Git忽略文件
 ```
