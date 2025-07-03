@@ -146,16 +146,76 @@ git commit -m "merge: 解决合并冲突，整合乘法和除法功能"
 git branch -d feature/division
 ```
 
-### 第四阶段：三人协作流程（v2.0.0 - 高级功能）🚧
+### 第四阶段：三人协作流程（v2.0.0 - 高级功能）✅
 
-#### 计划功能分配：
-- **Alice**: 添加平方和平方根功能
-- **Bob**: 实现计算历史导出功能
-- **Charlie**: 改进UI界面（添加颜色和格式）
+#### 1. 三个开发者同时开发不同功能
 
-### 第五阶段：Hotfix流程演示 🚧
+##### Alice: 添加平方和平方根功能
+```bash
+git checkout develop
+git checkout -b feature/power-functions
+# 修改calculator.py，添加power()和square_root()方法
+git add calculator.py
+git commit -m "feat: 添加幂运算和平方根功能"
+```
 
-模拟生产环境紧急修复除零错误的场景
+##### Bob: 实现计算历史导出功能
+```bash
+git config user.name "Bob"
+git checkout develop
+git checkout -b feature/history-export
+# 修改calculator.py，添加export_history()方法
+git add calculator.py
+git commit -m "feat: 添加历史记录导出功能"
+```
+
+##### Charlie: 改进UI界面
+```bash
+git config user.name "Charlie"
+git checkout develop
+git checkout -b feature/improved-ui
+# 创建ui_helper.py模块
+git add ui_helper.py
+git commit -m "feat: 添加UI辅助模块，支持彩色输出"
+```
+
+#### 2. 依次合并三个功能
+```bash
+git checkout develop
+git merge --no-ff feature/power-functions -m "merge: 合并Alice的幂运算功能"
+git merge --no-ff feature/history-export -m "merge: 合并Bob的历史导出功能"
+git merge --no-ff feature/improved-ui -m "merge: 合并Charlie的UI改进"
+
+# 删除已合并的分支
+git branch -d feature/power-functions feature/history-export feature/improved-ui
+```
+
+### 第五阶段：Hotfix流程演示 ✅
+
+#### 模拟生产环境紧急bug修复
+
+```bash
+# 从main分支创建hotfix
+git checkout main
+git checkout -b hotfix/negative-number-fix
+
+# 修复减法负数显示问题
+# 修改calculator.py的subtract方法
+git add calculator.py
+git commit -m "fix: 修复减法负数结果显示问题"
+
+# 合并到main并打标签
+git checkout main
+git merge --no-ff hotfix/negative-number-fix -m "merge: 紧急修复v1.0.1 - 负数显示问题"
+git tag -a v1.0.1 -m "版本 v1.0.1: 修复减法负数显示问题"
+
+# 合并到develop
+git checkout develop
+git merge --no-ff hotfix/negative-number-fix -m "merge: 同步hotfix到develop"
+
+# 删除hotfix分支
+git branch -d hotfix/negative-number-fix
+```
 
 ## GitHub协作 ✅
 
@@ -188,8 +248,9 @@ python main.py
 ## 版本历史
 
 - **v1.0.0** (2025-01-03): 基础计算器，支持加减法
+- **v1.0.1** (2025-01-03): 修复减法负数显示问题
 - **v1.1.0** (开发中): 添加乘除法功能
-- **v2.0.0** (计划中): 高级功能和UI改进
+- **v2.0.0** (开发中): 添加高级功能（幂运算、平方根、历史导出）和UI改进
 
 ## 项目结构
 ```
@@ -197,7 +258,9 @@ git-flow-demo/
 ├── README.md           # 项目说明和Git Flow流程文档
 ├── calculator.py       # 计算器核心类
 ├── main.py            # 命令行界面主程序
-├── test_calculator.py # 单元测试
+├── ui_helper.py       # UI辅助模块（彩色输出）
+├── test_calculator.py # 单元测试（待实现）
 ├── requirements.txt   # 项目依赖
+├── LICENSE           # MIT许可证
 └── .gitignore        # Git忽略文件
 ```
