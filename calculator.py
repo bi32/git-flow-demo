@@ -44,6 +44,26 @@ class Calculator:
         self._add_to_history(f"{a} - {b} = {result}")
         return result
         
+    def divide(self, a, b):
+        """
+        除法运算
+        
+        参数:
+            a (float): 被除数
+            b (float): 除数
+            
+        返回:
+            float: 两数之商
+            
+        异常:
+            ValueError: 当除数为0时抛出
+        """
+        if b == 0:
+            raise ValueError("错误：除数不能为0！")
+        result = a / b
+        self._add_to_history(f"{a} ÷ {b} = {result}")
+        return result
+        
     def _add_to_history(self, operation):
         """
         添加操作到历史记录

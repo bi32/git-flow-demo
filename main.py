@@ -9,11 +9,12 @@ from calculator import Calculator
 
 def print_menu():
     """打印操作菜单"""
-    print("\n========== 计算器 v1.0.0 ==========")
+    print("\n========== 计算器 v1.1.0 ==========")
     print("1. 加法")
     print("2. 减法")
-    print("3. 查看历史")
-    print("4. 清空历史")
+    print("3. 除法")
+    print("4. 查看历史")
+    print("5. 清空历史")
     print("0. 退出")
     print("===================================")
 
@@ -43,7 +44,7 @@ def main():
         print_menu()
         
         try:
-            choice = input("\n请选择操作 (0-4): ")
+            choice = input("\n请选择操作 (0-5): ")
             
             if choice == '0':
                 print("感谢使用，再见！")
@@ -64,6 +65,16 @@ def main():
                     print(f"结果: {result}")
                     
             elif choice == '3':
+                # 除法
+                a, b = get_numbers()
+                if a is not None and b is not None:
+                    try:
+                        result = calc.divide(a, b)
+                        print(f"结果: {result}")
+                    except ValueError as e:
+                        print(str(e))
+                    
+            elif choice == '4':
                 # 查看历史
                 history = calc.get_history()
                 if history:
@@ -73,7 +84,7 @@ def main():
                 else:
                     print("暂无计算历史。")
                     
-            elif choice == '4':
+            elif choice == '5':
                 # 清空历史
                 calc.clear_history()
                 print("历史记录已清空。")
